@@ -1,0 +1,8 @@
+Try the *Law of Large Numbers* for N random numbers normally distributed with mean = 0, stdev = 1: 
+Create an R script that counts how many of these numbers fall between -1 and 1 and divide by the total amount of N 
+You know that E (X) = 68.2% 
+Verify the mean (Xn) -> E (X) while running your script again while increasing N Innuendo: 
+-Initialize sample size 
+-Initialize counter loop for (i in rnorm (size)) 
+-Check if the iterated variable falls 
+-Increase the counter if the condition is true return a result <- counter / N
