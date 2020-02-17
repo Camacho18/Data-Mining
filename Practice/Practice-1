@@ -19,3 +19,5 @@ for(i in rnorm(size,mean,stdev)){
 }
 result <- cont/size
 result <- result*100
+paste(format(round(result, 2), nsmall = 2),"%")
+
