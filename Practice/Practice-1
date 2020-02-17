@@ -6,3 +6,11 @@ Verify the mean (Xn) -> E (X) while running your script again while increasing N
 -Initialize counter loop for (i in rnorm (size)) 
 -Check if the iterated variable falls 
 -Increase the counter if the condition is true return a result <- counter / N
+
+
+
+size <- 99999999
+cont <- 0
+mean <- 0
+stdev <- 1
+valores <- rnorm(size,mean,stdev)
