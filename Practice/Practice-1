@@ -17,3 +17,5 @@ for(i in rnorm(size,mean,stdev)){
   if(i>=-1 && i<=1)
     cont <- cont+1
 }
+result <- cont/size
+result <- result*100
