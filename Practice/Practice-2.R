@@ -9,3 +9,14 @@ Sys.time()     # Return system time
 Sys.Date()     # Return system date
 getwd()        # Return working directory
 setwd("/home") # Set working directory
+
+sqrt (x) #Square root of x
+ceiling #(x) Integer smaller than xf
+floor (x) #An integer larger than x
+trunc (x) #Truncation of x
+round (x, digits = n) #Rounds x to a specific number of decimals
+log (x, base = n) #Logarithms
+#Generate random numbers
+str(rnorm)
+function (n, mean = 0, sd = 1)
+rnorm(3)
