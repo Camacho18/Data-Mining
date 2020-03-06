@@ -31,6 +31,7 @@ paste(format(round(result, 2), nsmall = 2),"%")
 ```
 
 ###Second Practice
+
 **Practice find 20 more funtions in R and make an example of it.**
 x<-c(14,15,16,20,14) # A generic function which combines its arguments 
 Sys.getenv(x)  # Get the value of the environment variable "x"
@@ -42,7 +43,6 @@ Sys.time()     # Return system time
 Sys.Date()     # Return system date
 getwd()        # Return working directory
 setwd("/home") # Set working directory
-
 sqrt (x) #Square root of x
 ceiling #(x) Integer smaller than xf
 floor (x) #An integer larger than x
@@ -55,6 +55,7 @@ function (n, mean = 0, sd = 1)
 rnorm(3)
 
 ###Third Practice
+
 Scenario: You are a Data Scientist working for a consulting firm.
 One of your colleagues from the Auditing Department has asked you
 to help them assess the financial statement of organization X.
@@ -196,19 +197,19 @@ M
 ```
 
 ###Four Practice
+
 #Instructions for this dataset:
-# You have only been supplied vectors. You will need
-# to create the matrices yourself.
-# Matrices:
-# - FreeThrows
-# - FreeThrowAttempts
-#Kirill Eremenko
-#www.superdatascience.com
+**You have only been supplied vectors. You will need to create the matrices yourself.
+**Matrices:
+**- FreeThrows
+**- FreeThrowAttempts
+**Kirill Eremenko
+**www.superdatascience.com
 
 #Copyright: These datasets were prepared using publicly available data.
-#           However, theses scripts are subject to Copyright Laws. 
-#           If you wish to use these R scripts outside of the R Programming Course
-#           by Kirill Eremenko, you may do so by referencing www.superdatascience.com in your work.
+**However, theses scripts are subject to Copyright Laws. 
+**If you wish to use these R scripts outside of the R Programming Course
+**by Kirill Eremenko, you may do so by referencing www.superdatascience.com in your work.
 
 #Comments:
 #Seasons are labeled based on the first year in the season
