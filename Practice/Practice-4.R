@@ -61,3 +61,34 @@ rownames(FreeThrows) <- Players
 
 #Check the matrix
 FreeThrows
+
+#
+########### second matrix ############
+#Free Throw Attempts
+KobeBryant_FTA <- c(819,768,742,564,541,583,451,626,21,241)
+JoeJohnson_FTA <- c(330,314,379,362,269,243,186,161,195,176)
+LeBronJames_FTA <- c(814,701,771,762,773,663,502,535,585,528)
+CarmeloAnthony_FTA <- c(709,568,590,468,612,605,367,512,541,237)
+DwightHoward_FTA <- c(598,666,897,849,816,916,572,721,638,271)
+ChrisBosh_FTA <- c(581,590,559,617,590,471,279,302,272,232)
+ChrisPaul_FTA <- c(465,357,390,524,190,384,302,323,345,321)
+KevinDurant_FTA <- c(256,256,448,524,840,675,501,750,805,171)
+DerrickRose_FTA <- c(205,205,205,250,338,555,239,0,32,187)
+DwayneWade_FTA <- c(803,535,467,771,702,652,297,425,258,370)
+#Matrix
+#
+FreeThrowAttempts
+# <put your code here>
+FreeThrowAttempts <- rbind(KobeBryant_FTA, JoeJohnson_FTA, LeBronJames_FTA, CarmeloAnthony_FTA, DwightHoward_FTA, ChrisBosh_FTA, ChrisPaul_FTA, KevinDurant_FTA, DerrickRose_FTA, DwayneWade_FTA)
+rm(KobeBryant_FTA, JoeJohnson_FTA, LeBronJames_FTA, CarmeloAnthony_FTA, DwightHoward_FTA, ChrisBosh_FTA, ChrisPaul_FTA, KevinDurant_FTA, DerrickRose_FTA, DwayneWade_FTA)
+colnames(FreeThrowAttempts) <- Seasons
+rownames(FreeThrowAttempts) <- Players
+FreeThrowAttempts
+#
+########### function ############
+myplot <- function(z, who=1:10) {
+  matplot(t(z[who,,drop=F]), type="b", pch=15:18, col=c(1:4,6), main="Basketball Players Analysis")
+  legend("bottomleft", inset=0.01, legend=Players[who], col=c(1:4,6), pch=15:18, horiz=F)
+}
+myplot(FreeThrows)
+myplot(FreeThrowAttempts)
