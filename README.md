@@ -232,12 +232,17 @@ Derrick Rose: 2006 - Proxied With 2007 Data
 Derrick Rose: 2005 - Proxied With 2007 Data  
 
 #Seasons  
+```R
 Seasons <- c("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014")  
 Seasons  
+```
 #Players  
+```R
 Players <- c("KobeBryant", "JoeJohnson", "LeBronJames", "CarmeloAnthony", "DwightHoward", "ChrisBosh", "ChrisPaul","KevinDurant", "DerrickRose", "DwayneWade")  
 Players  
+```
 #Free Throws  
+```R
 KobeBryant_FT <- c(696,667,623,483,439,483,381,525,18,196)  
 JoeJohnson_FT <- c(261,235,316,299,220,195,158,132,159,141)  
 LeBronJames_FT <- c(601,489,549,594,593,503,387,403,439,375)  
@@ -248,24 +253,33 @@ ChrisPaul_FT <- c(394,292,332,455,161,337,260,286,295,289)
 KevinDurant_FT <- c(209,209,391,452,756,594,431,679,703,146)  
 DerrickRose_FT <- c(146,146,146,197,259,476,194,0,27,152)  
 DwayneWade_FT <- c(629,432,354,590,534,494,235,308,189,284)    
-
+```
 #Matrix 
+``` R
 FreeThrows <- rbind(KobeBryant_FT, JoeJohnson_FT, LeBronJames_FT, CarmeloAnthony_FT, DwightHoward_FT, ChrisBosh_FT, ChrisPaul_FT, KevinDurant_FT, DerrickRose_FT, DwayneWade_FT)  
 FreeThrows  
+```
 #Remove vectors - we don't need them anymore  
+```R
 rm(KobeBryant_FT, JoeJohnson_FT, CarmeloAnthony_FT, DwightHoward_FT, ChrisBosh_FT, LeBronJames_FT, ChrisPaul_FT, DerrickRose_FT, DwayneWade_FT, KevinDurant_FT)  
 FreeThrows  
+```
 #Rename the columns  
+```R
 colnames(FreeThrows) <- Seasons  
+```
 #Rename the rows  
+```R
 rownames(FreeThrows) <- Players
-
+```
 #Check the matrix  
+```R
 FreeThrows
-
+```
 #
 ########### second matrix ############  
 #Free Throw Attempts  
+```R
 KobeBryant_FTA <- c(819,768,742,564,541,583,451,626,21,241)  
 JoeJohnson_FTA <- c(330,314,379,362,269,243,186,161,195,176)  
 LeBronJames_FTA <- c(814,701,771,762,773,663,502,535,585,528)  
@@ -276,18 +290,22 @@ ChrisPaul_FTA <- c(465,357,390,524,190,384,302,323,345,321)
 KevinDurant_FTA <- c(256,256,448,524,840,675,501,750,805,171)  
 DerrickRose_FTA <- c(205,205,205,250,338,555,239,0,32,187)  
 DwayneWade_FTA <- c(803,535,467,771,702,652,297,425,258,370)  
-
+```
 #Matrix  
-
+```R
 FreeThrowAttempts
 
 FreeThrowAttempts <- rbind(KobeBryant_FTA, JoeJohnson_FTA, LeBronJames_FTA, CarmeloAnthony_FTA, DwightHoward_FTA, ChrisBosh_FTA, ChrisPaul_FTA, KevinDurant_FTA, DerrickRose_FTA, DwayneWade_FTA)  
+
 rm(KobeBryant_FTA, JoeJohnson_FTA, LeBronJames_FTA, CarmeloAnthony_FTA, DwightHoward_FTA, ChrisBosh_FTA, ChrisPaul_FTA, KevinDurant_FTA, DerrickRose_FTA, DwayneWade_FTA)  
+
 colnames(FreeThrowAttempts) <- Seasons  
 rownames(FreeThrowAttempts) <- Players  
 FreeThrowAttempts
+```
 #
 ########### function ############  
+```R
 myplot <- function(z, who=1:10) {
   matplot(t(z[who,,drop=F]), type="b", pch=15:18, col=c(1:4,6), main="Basketball Players Analysis")
   legend("bottomleft", inset=0.01, legend=Players[who], col=c(1:4,6), pch=15:18, horiz=F)
@@ -295,10 +313,11 @@ myplot <- function(z, who=1:10) {
 
 myplot(FreeThrows)  
 myplot(FreeThrowAttempts)
-
+```
 #Part 1 - Free Throw Attempts Per Game   
 #(You will need the Games matrix)  
 #Games   
+```R
 KobeBryant_G <- c(80,77,82,82,73,82,58,78,6,35)  
 JoeJohnson_G <- c(82,57,82,79,76,72,60,72,79,80)  
 LeBronJames_G <- c(79,78,75,81,76,79,62,76,77,69)  
@@ -309,8 +328,10 @@ ChrisPaul_G <- c(78,64,80,78,45,80,60,70,62,82)
 KevinDurant_G <- c(35,35,80,74,82,78,66,81,81,27)  
 DerrickRose_G <- c(40,40,40,81,78,81,39,0,10,51)  
 DwayneWade_G <- c(75,51,51,79,77,76,49,69,54,62)  
+```
 
 #Matrix  
+```R
 Games <- rbind(KobeBryant_G, JoeJohnson_G, LeBronJames_G, CarmeloAnthony_G, DwightHoward_G, ChrisBosh_G, ChrisPaul_G, KevinDurant_G, DerrickRose_G, DwayneWade_G)  
 rm(KobeBryant_G, JoeJohnson_G, CarmeloAnthony_G, DwightHoward_G, ChrisBosh_G, LeBronJames_G, ChrisPaul_G, DerrickRose_G, DwayneWade_G, KevinDurant_G)  
 colnames(Games) <- Seasons  
@@ -319,30 +340,39 @@ rownames(Games) <- Players
 myplot(FreeThrowAttempts/Games)
 
 myplot(FieldGoals/FieldGoalAttempts)
-
+```
 #Part 2 - Free Throw Accuracy  
+``` R
 myplot(FreeThrows/Games)
-
+```
 
 #Part 3 - Player Style Patterns Excluding Free Throws  
+```R
 myplot((FieldGoalAttempts-FreeThrows)/Games)
-
+```
 
 ### Five Practice
+``` R
 stats <- read.csv(file.choose())  
 stats  
+```
 #Filter countries by Low income  
+``` R
 head(stats)  
 filter <- stats$Income.Group == "Low income" #TRUE  
 filter  
 stats[filter,]  
+```
 #Filter countries by Lower middle income  
+``` R
 head(stats)  
 filter <- stats$Income.Group == "Lower middle income" #TRUE  
 filter  
 stats[filter,]  
+```
 #Filter countries by Upper middle income  
+```R
 head(stats)  
 filter <- stats$Income.Group == "Lower middle income" #TRUE  
 filter  
-stats[filter,]  
+stats[filter,]  ```
