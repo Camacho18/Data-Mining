@@ -1,0 +1,27 @@
+getwd() // get the working directory that R will take
+setwd("C:/Users/Dell/Desktop/Examen_Unidad_II") // change working directory to necessary path
+getwd() // gets the new path where R will extract the data
+
+// It is responsible for reading the data from a csv-type file, the path where it will search for it was already specified in the previous step
+movies <- read.csv("Project-Data.csv")
+head(movies) // Returns the first 6 elements of a vector, matrix, table, data frame or function.
+
+// Rename the columns in the data.
+colnames(movies) <- c("Day_Week","Director","Genre","Title","Release_Date","Studio","Adjusted Gross","Budget","Gross","IMDb_Rating","MovieLens_Rating","Overseas","Overseas%","Profit","Profit%","Runtime","US","GrossPor")
+
+// filter the data to eliminate unnecessary data
+filter_movies <- (movies$Genre=="action" | movies$Genre=="adventure" | movies$Genre=="animation" | movies$Genre=="comedy" | movies$Genre=="drama") & (movies$Studio=="Buena Vista Studios" | movies$Studio=="Fox" | movies$Studio=="Paramount Pictures" | movies$Studio=="Sony" | movies$Studio=="Universal" | movies$Studio=="WB")
+filter_movies //shows the previously made filter, each data shows it as true or false, depending on whether said data met the filter
+// At this point is when filtering is applied, it compares the data that was loaded with the array that was done previously, this way it only leaves the data that is true.
+movies <- movies[filter_movies,]
+head(movies)
+
+library(ggplot2) // system to declaratively create charts
+
+// Declaration of the input data frame for a graph, specifying the data and columns that will take the values on the axes (X and Y)
+gg <- ggplot(movies, aes(x=Genre, y=GrossPor))
+gg
+gg + geom_jitter(aes(color=Studio,size=Budget)) // geom_jitter = paint the dots with a small offset
+// geom_boxplot Make a box diagram, which allows you to see through the quartiles, what the distribution is like, its degree of asymmetry, extreme values, the position of the median, etc.
+gg + geom_jitter(aes(color=Studio,size=Budget)) + geom_boxplot(aes(color=Budget,alpha=1.5))
+
