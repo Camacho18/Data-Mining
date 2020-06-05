@@ -439,6 +439,19 @@ ggplot (data = miles) +
 ```
 ![Image](Unit_2/Homework/images/image2.1.png)
 
+The values of thevariables highway and displacement are rounded so that the points appear on a grid and many overlap each other. This problem is known as overlap (overplotting).This arrangement makes it difficult to see where the mass of data is. Are the data points evenly distributed along the graph, or is there a special combination of highway and displacement containing 109 values?
+
+You can avoid this by setting the position adjustment to “jitter”. position = "jitter" adds a small amount of random noise to each point. This disperses the points, since two points are unlikely to receive the same amount of random noise.
+
+```R 
+ggplot (data = miles) +
+  geom_point (mapping = aes (x = displacement, y = highway), position = "jitter")
+```
+![Image](Unit_2/Homework/images/image2.2.png)
+
+Adding randomness to points may seem like a strange way to improve your graph. While it makes it less accurate at small scales, it makes it more telling on a large scale. Since this is such a useful operation, ggplot2 includes an abbreviation for geom_point (position = "jitter"): geom_jitter ().
+
+
 ## Homework_3
 <p align="center">¿P - value?</p>
 <p align="justify">
