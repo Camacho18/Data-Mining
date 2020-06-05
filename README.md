@@ -532,7 +532,7 @@ econdatalong <- gather (econdata, key ="measure", value ="value", c ("GDP_nom", 
 ```
 Once you have the data in that format, you can use our key variable to trace with facets. Let's build a simple graph, showing both nominal GDP (from our first graph) and GDP (PPP) (from our second graph). To do so, simply modify your code to add it + facet_wrap () and specify that ~ measure, our key variable, should be used for faceting.
 
-````R
+```R
 ggplot (econdatalong, aes (x = Country, y = value)) +
   geom_bar (stat ='identity', fill ="forest green") +
   facet_wrap (~ measure)
@@ -555,7 +555,7 @@ Use xlim and ylim
 
 Any value outside the limits will be replaced by NA and discarded.
 
-````R
+```R
 p + xlim (5, 20) + ylim (0, 50)
 ```
 Use scale_x_continuous and scale_y_continuous
