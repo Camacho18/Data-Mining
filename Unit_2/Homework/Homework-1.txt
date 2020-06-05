@@ -1,0 +1,56 @@
+Split Ratio () and lm ()
+Generally, although the data you want to work with is given in
+Tables are not organized in the way intended to work on them.
+function split (), allows classifying data, typically given as a vector, or
+like a data frame.
+Splitting ratio:
+● if (0 <= splitratio <1) <code = ""> then SplitRatio fraction of points from Y
+will be set to true
+● if (SplitRatio == 1) then one random point from Y will be set to True
+● if (SplitRatio> 1) then SplitRatio number of points from Y will be set to
+True
+
+lm ()
+Used to fit linear models can be used to carry out
+regression, single-stratum analysis of variance and covariance analysis.
+Models for lm are specified symbolically.
+lm returns an object of class "lm" or for multiple class responses
+c ("mlm", "lm").
+An object of class "lm" is a list containing at least the following
+components:
+● coefficients
+a named vector of coefficients
+● residual copyright
+the residuals, that is, the answer minus the adjusted values.
+● adjusted values
+adjusted mean values
+● range
+The numerical range of the fitted linear model.
+● weights
+(for weighted adjustments only) the specified weights.
+● df.residual
+The residual degrees of freedom.
+● call
+the matching call
+● conditions
+
+The terms object used.
+● contrasts
+(only where relevant) the contrasts used.
+● xlevels
+(only where relevant) a record of factor levels
+used in adjustment.
+● compensate
+the offset used (missing if none were used).
+● and
+if requested, the response used.
+● X
+if requested, the model matrix used.
+● model
+if requested (the default), the frame of the model used.
+● na.action
+(where applicable) information returned by model.frame about handling
+NA special.
+Also, nonzero settings will have assigned components, effects and (unless
+not requested) qr related to linear adjustment, for use by functions
+extractors as summary and effects.
