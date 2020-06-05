@@ -427,6 +427,38 @@ contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
 points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
 points(set, pch = 21, bg = ifelse(set[, 2] == 1, 'green4', 'red3'))
 ```
+## Homework_2
+
+Geom_jitter
+
+To understand this topic we will start by creating a graph of points
+
+```R
+ggplot (data = miles) +
+  geom_point (mapping = aes (x = displacement, y = highway))
+```
+![Image](Data-Mining/Unit_2/HomeWork/images/image2.1)
+
+## Homework_3
+<p align="center">¿P - value?</p>
+<p align="justify">
+The p-value is a direct measure of how plausible it is to obtain a sample like the current one if it is true H0. Small values ​​indicate that it is very infrequent to obtain a sample like the current one, while high values ​​are frequent. The p-value is used to indicate how much (or how little) the alternative hypothesis contradicts the current sample.
+
+</p>
+<p align="justify"> 
+Reporting what the p-value is has the advantage of allowing anyone to decide which hypothesis to accept based on their own level of risk α. This is not possible when reporting, as has been traditional, indicating only the result of the decision, that is, whether His accepted or rejected0 with a fixed α.
+By providing the p-value obtained with the current sample, the decision will be made according to the following rule:
+  
+</p>
+<p align="center">
+if pv ≤ α, accept H1
+</p>
+<p align="center">
+if pv > α, accept H0 
+</p>
+<p align="justify"> 
+Entering the practical field, some statistical packages They provided in their listings the significancelevel,literally meaning significance levelwhen often actually refer to the p-value (p-value).
+</p>
 
 ## Homework_4
 
