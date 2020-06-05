@@ -192,3 +192,316 @@ SL = 0.5
 training_set
 backwardElimination(training_set, SL)
 ```
+
+## Practice_4
+
+```R
+library(ElemStatLearn)
+library(caTools)
+library(ggplot2)
+
+getwd()
+setwd("/Users/Dell/Desktop/DataMining-master/MachineLearning/LogisticRegression")
+getwd()
+
+# Se importa el conjunto de datos con el que trabajará.
+
+dataset <- read.csv('Social_Network_Ads.csv')
+
+# Se seleccionan los columnas con los que trabajaremos.
+dataset <- dataset[, 3:5]
+
+set.seed(123)
+split <- sample.split(dataset$Purchased, SplitRatio = 0.75)
+training_set <- subset(dataset, split == TRUE)
+test_set <- subset(dataset, split == FALSE)
+
+training_set[, 1:2] <- scale(training_set[, 1:2])
+test_set[, 1:2] <- scale(test_set[, 1:2])
+
+classifier = glm(formula = Purchased ~ .,
+                 family = binomial,
+                 data = training_set)
+
+# Predecir los resultados del conjunto de prueba
+prob_pred = predict(classifier, type = 'response', newdata = test_set[-3])
+prob_pred
+y_pred = ifelse(prob_pred > 0.5, 1, 0)
+y_pred
+
+# se crea la Matriz de Confusión 
+cm = table(test_set[, 3], y_pred)
+cm
+
+#se asignan los valores a utulizar en elgrafico
+ggplot(training_set, aes(x=EstimatedSalary, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+ggplot(training_set, aes(x=Age, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+ggplot(test_set, aes(x=EstimatedSalary, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+ggplot(test_set, aes(x=Age, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+
+install.packages(path_to_source, repos = NULL, type="source")
+install.packages("~/Downloads/ElemStatLearn_2015.6.26.2.tar", repos=NULL, type="source")
+
+set = training_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+prob_set = predict(classifier, type = 'response', newdata = grid_set)
+y_grid = ifelse(prob_set > 0.5, 1, 0)
+plot(set[, -3],
+     main = 'Logistic Regression (Training set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
+
+#observar el resultado de los datos de prueba
+library(ElemStatLearn)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+prob_set = predict(classifier, type = 'response', newdata = grid_set)
+y_grid = ifelse(prob_set > 0.5, 1, 0)
+plot(set[, -3],
+     main = 'Logistic Regression (Test set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
+```
+
+## Practice_5
+
+```R
+getwd()
+setwd("Users/deyanira/Downloads/DataMining-master/MachineLearning/LogisticRegression")
+getwd()
+
+dataset <- read.csv('Social_Network_Ads.csv')
+
+dataset <- dataset[, 3:5]
+
+library(caTools)
+set.seed(123)
+split <- sample.split(dataset$Purchased, SplitRatio = 0.75)
+training_set <- subset(dataset, split == TRUE)
+test_set <- subset(dataset, split == FALSE)
+
+training_set[, 1:2] <- scale(training_set[, 1:2])
+test_set[, 1:2] <- scale(test_set[, 1:2])
+
+classifier = glm(formula = Purchased ~ .,
+                 family = binomial,
+                 data = training_set)
+
+prob_pred = predict(classifier, type = 'response', newdata = test_set[-3])
+prob_pred
+y_pred = ifelse(prob_pred > 0.5, 1, 0)
+y_pred
+
+cm = table(test_set[, 3], y_pred)
+cm
+
+library(ggplot2)
+
+ggplot(training_set, aes(x=EstimatedSalary, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+ggplot(training_set, aes(x=Age, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+ggplot(test_set, aes(x=EstimatedSalary, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+ggplot(test_set, aes(x=Age, y=Purchased)) + geom_point() + 
+  stat_smooth(method="glm", method.args=list(family="binomial"), se=FALSE)
+
+install.packages(path_to_source, repos = NULL, type="source")
+install.packages("~/Downloads/ElemStatLearn_2015.6.26.2.tar", repos=NULL, type="source")
+
+library(ElemStatLearn)
+set = training_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+prob_set = predict(classifier, type = 'response', newdata = grid_set)
+y_grid = ifelse(prob_set > 0.5, 1, 0)
+plot(set[, -3],
+     main = 'Logistic Regression (Training set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
+
+library(ElemStatLearn)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+prob_set = predict(classifier, type = 'response', newdata = grid_set)
+y_grid = ifelse(prob_set > 0.5, 1, 0)
+plot(set[, -3],
+     main = 'Logistic Regression (Test set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
+```
+
+## Practice_6 
+
+```R
+getwd()
+setwd("/Users/deyanira/Downloads/DataMining-master/MachineLearning/SVM") #se carga el directorio o carpeta donde se encuentran los archivos que utilizaremos
+getwd()
+
+dataset = read.csv('datos.csv') #se cargan los datos del archivo que estamos llamando
+dataset = dataset[3:4]
+
+dataset$cl = factor(dataset$cl, levels = c(0, 1))
+
+library(caTools) #se utilizara la libreria catools 
+set.seed(123) #para crear simulaciones u objetos aleatorios que se pueden reproducir.
+split = sample.split(dataset$cl, SplitRatio = 0.75)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
+
+training_set[-2] = scale(training_set[-2])
+test_set[-2] = scale(test_set[-2])
+
+library(e1071)
+classifier = svm(formula = cl ~ .,
+                 data = training_set,
+                 type = 'C-classification',
+                 kernel = 'sigmoid')
+
+y_pred = predict(classifier, newdata = test_set[-2])
+y_pred
+
+cm = table(test_set[, 2], y_pred)
+cm
+
+library(ElemStatLearn)
+set = training_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('x', 'y')
+y_grid = predict(classifier, newdata = grid_set)
+plot(set[, -3],
+     main = 'SVM (Training set)',
+     xlab = 'x', ylab = 'y',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 2] == 1, 'green4', 'red3'))
+
+library(ElemStatLearn)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('x', 'y')
+y_grid = predict(classifier, newdata = grid_set)
+plot(set[, -3], main = 'SVM (Test set)',
+     xlab = 'x', ylab = 'y',
+     xlim = range(X1), ylim = range(X2))
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 2] == 1, 'green4', 'red3'))
+```
+
+## Homework_4
+
+
+Split Ratio () and lm ()
+
+Generally, though The data that you want to work with is given in tables, they are not organized in the way you intend to work on them. Thefunction split ()allows you to classify the data, typically given as a vector, or as a data frame. 
+
+Splitting ratio:
+if (0<= splitratio <1) <code =""> then SplitRatio fraction of points from Y will be set to True
+
+if (SplitRatio ==1) then one random point from Y will be set to True
+
+if ( SplitRatio>1) then SplitRatio number of points from Y will be set to True
+
+
+
+lm () 
+Used to fit linear models can be used to perform regression, single-stratum analysis of variance and covariance analysis.
+Models for lm are specified symbolically. 
+
+lm returns an object of class "lm" or for multiple responses of class c ("mlm", "lm").
+An object of class  "lm" is a list containing at least the following components:
+coefficients
+a named vector of coefficients
+residual rights copyrights
+the residuals, that is, the answer minus the fitted values.
+fitted values ​​the adjusted
+mean values
+range
+The numerical range of the fitted linear model.
+weights
+(for weighted adjustments only) the specified weights.
+df.residual
+The residual degrees of freedom.
+call
+the matching call
+conditions
+The terms object used.
+contrasts
+(only where relevant) the contrasts used.
+xlevels
+(only where relevant) a record of the levels of the factors used in the adjustment.
+offset
+offset used (missing if none were used).
+and
+if requested, the response used.
+X
+if requested, the model matrix used.
+model
+if requested (the default), the frame of the model used.
+na.action
+(where applicable) information returned by model.frame about special handling of NAs.
+
+In addition, nonzero adjustments will have assigned components, effects, and (unless requested) qr related to linear adjustment, for use by extractor functions such as summary and effects .
+
+## Homework_5
+
+What does GLM?
+glm is used to fit generalized linear models, specified by a symbolic description of the linear predictor and a description of the error distribution.
+glm returns a class object inherited from "glm" which inherits from the class "lm".
+
+glm.fit is the workhorse function: it is not normally called directly, but it can be more efficient when the response vector, design matrix, and family have already been calculated.
+
+Thefunction summary(that is, summary.glm) can be used to get or print a summary of the results, and thefunction anova(that is, anova.glm) to produce an analysis of variance table.
+Generic access functions coefficients, effects, fitted.values and residuals can be used to extract various useful features from the value returned by glm.
+An object of class "glm" is a list containing at least the following components:
+coefficients
+a named vector of coefficients
+copyright residuals
+the residuals of work , that is, the residuals in the final iteration of the IWLS setting. Since zero weight cases are omitted, your work residuals are NA.
+fitted values ​​the fitted
+mean values, obtained by transforming the linear predictors by the inverse of the link function.
+range
+The numerical range of the fitted linear model.
+family
+The family object used.
+
