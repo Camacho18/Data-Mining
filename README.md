@@ -437,7 +437,7 @@ To understand this topic we will start by creating a graph of points
 ggplot (data = miles) +
   geom_point (mapping = aes (x = displacement, y = highway))
 ```
-![Image](Data-Mining/Unit_2/HomeWork/images/image2.1)
+![Image](Unit_2/Homework/images/image2.1.png)
 
 ## Homework_3
 <p align="center">¿P - value?</p>
