@@ -60,97 +60,97 @@ Social_Network_Ads.csv and using the e1071 library with the naiveBayes () functi
 At the end of development, explain in detail the consistency of the Naive Bayes classification and also the detailed explanation to data visualization.
 
 ```R
-#Instalar Paquetes necesarios 
-install.packages("e1071")
-install.packages("naivebayes")
+#Install required packages
+install.packages ("e1071")
+install.packages ("naivebayes")
 
-library("e1071")
-library("naivebayes")
+library ("e1071")
+library ("naivebayes")
 
-#Indicamos la ruta de nuestro archivo
-getwd()
-setwd("C:\Users\Dell\Desktop\Semestre_X\MineriaDatos\Exam_2")
-getwd()
+#We indicate the path of our file
+getwd ()
+setwd ("C: \ Users \ Dell \ Desktop \ Semestre_X \ MineriaDatos \ Exam_2")
+getwd ()
 
 
-# Importalos los datos desde un artchivo tipo csv a una variable
-dataset = read.csv('Social_Network_Ads.csv')
-summary(dataset)
-head(dataset)
+# Import the data from a csv type file to a variable
+dataset = read.csv ('Social_Network_Ads.csv')
+summary (dataset)
+head (dataset)
 
-# Elegimos las columnas que vamos a utilizar
-dataset = dataset[3:5]
+# We choose the columns that we are going to use
+dataset = dataset [3: 5]
 
-# Visualizamos el DataSet
-summary(dataset)
-head(dataset)
+# We visualize the DataSet
+summary (dataset)
+head (dataset)
 
-# codificamos la columna categorica que nos indica si se realizaron compras
-dataset$Purchased = factor(dataset$Purchased, levels = c(0, 1))
-summary(dataset)
-str(dataset)
-#lo volvemos a visualizar
-summary(dataset)
+# we code the categorical column that indicates if purchases were made
+dataset $ Purchased = factor (dataset $ Purchased, levels = c (0, 1))
+summary (dataset)
+str (dataset)
+#we'll see it again
+summary (dataset)
 
-#Importamos la libreria `caTools`
-library(caTools)
+#Import the `caTools` library
+library (caTools)
 
-#Dividimos el conjunto de datos para su training y generamos una regla del 75%
-set.seed(123)
-split = sample.split(dataset$Purchased, SplitRatio = 0.75)
-training_set = subset(dataset, split == TRUE)
-test_set = subset(dataset, split == FALSE)
+#We divide the data set for your training and generate a 75% rule
+set.seed (123)
+split = sample.split (dataset $ Purchased, SplitRatio = 0.75)
+training_set = subset (dataset, split == TRUE)
+test_set = subset (dataset, split == FALSE)
 
-# Tranformamos las columnas aun mejor significado para el que el algorito
-# maneje mejor los datos.
-# el [-3] significa que va agarrar las primeras dos columnas 
-training_set[-3] = scale(training_set[-3])
-test_set[-3] = scale(test_set[-3])
+# We transform the columns even better meaning for which the algorithm
+# better manage data.
+# the [-3] means that it will grab the first two columns
+training_set [-3] = scale (training_set [-3])
+test_set [-3] = scale (test_set [-3])
 
-#visualizamos los datos del entrenamiento
-head(training_set)
-head(test_set)
+#visualize the training data
+head (training_set)
+head (test_set)
 
-# Ahora entrenamos el algoritmo de naive bayes
-# x	Una matriz numérica, o un marco de datos de variables categóricas y / o numéricas.
-# y	Vector de clase
-classifier = naiveBayes(x = training_set[-3],
-                        y = training_set$Purchased)
+# Now we train the naive bayes algorithm
+# x A numeric matrix, or a data frame of categorical and / or numeric variables.
+# and Class Vector
+classifier = naiveBayes (x = training_set [-3],
+                        y = training_set $ Purchased)
 classifier
 
-training_set[-3]
-training_set$Purchased
+training_set [-3]
+training_set $ Purchased
 
-y_pred = predict(classifier, newdata = test_set[-3])
+y_pred = predict (classifier, newdata = test_set [-3])
 y_pred
 
-test_set[-3]
+test_set [-3]
 
-cm = table(test_set[, 3], y_pred, dnn = c("Actual", "Predicha"))
+cm = table (test_set [, 3], y_pred, dnn = c ("Current", "Predicted"))
 cm
 
-# En este puntos graficamos los datos con el modelo 
-# Visualizar los datos de entrenamiento 
+# In this point we graph the data with the model
+# View training data
 set = training_set
 
-# Visualizar los datos de prueba
+# View test data
 set = test_set
 
 
-X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
-X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
-grid_set = expand.grid(X1, X2)
-colnames(grid_set) = c('Age', 'EstimatedSalary')
+X1 = seq (min (set [, 1]) - 1, max (set [, 1]) + 1, by = 0.01)
+X2 = seq (min (set [, 2]) - 1, max (set [, 2]) + 1, by = 0.01)
+grid_set = expand.grid (X1, X2)
+colnames (grid_set) = c ('Age', 'EstimatedSalary')
 
-y_grid = predict(classifier, newdata = grid_set)
+y_grid = predict (classifier, newdata = grid_set)
 
-plot(set[, -3], main = 'Test Naive Bayes Results',
+plot (set [, -3], main = 'Test Naive Bayes Results',
      xlab = 'Age', ylab = 'Estimated Salary',
-     xlim = range(X1), ylim = range(X2))
+     xlim = range (X1), ylim = range (X2))
 
-contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
-points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'palegoldenrod', 'aquamarine'))
-points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'red', 'blue'))
+contour (X1, X2, matrix (as.numeric (y_grid), length (X1), length (X2)), add = TRUE)
+points (grid_set, pch = '.', col = ifelse (y_grid == 1, 'palegoldenrod', 'aquamarine'))
+points (set, pch = 21, bg = ifelse (set [, 3] == 1, 'red', 'blue'))
 
 
 
