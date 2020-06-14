@@ -30,7 +30,7 @@ datameans
 datameans $ cluster
 table (datameans $ cluster, dataset $ species)
 ```
-![Alt text](images/table-datameanscluster.png "")
+![Alt text](images/table-datameasncluster.png "")
 
 ```R
 # We assign the class variable, the numerical data as a factor of the data set.
@@ -71,19 +71,11 @@ clusplot (dataset, datameans $ cluster,
 ```
  ![Alt text](images/cluspot.png "")
          
-
+```R
 datameans $ size
 datameans $ totss
 datameans $ withinss
 datameans $ iter
 datameans $ tot.withinss
 datameans $ betweenss
-
-
-datameans$size
-datameans$totss
-datameans$withinss
-datameans$iter
-datameans$tot.withinss
-datameans$betweenss
 ```
